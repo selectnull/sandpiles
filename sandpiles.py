@@ -97,3 +97,13 @@ class Sandpile(object):
         for x in self.data:
             s += ' '.join(str(y) for y in x) + '\n'
         return s
+
+    def __add__(self, other):
+        first = Sandpile(data=copy.deepcopy(self.data))
+        if first.size != other.size:
+            raise ValueError('Sandpile sizes must match.')
+
+        for x, vx in enumerate(first.data):
+            for y, vy in enumerate(vx):
+                first.data[x][y] += other.data[x][y]
+        return first.topple()

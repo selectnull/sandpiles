@@ -81,3 +81,11 @@ class TestBehaviour(unittest.TestCase):
         a = Sandpile(data=s1)
         steps = a.topple()
         self.assertEqual(a.data, s3)
+
+    def test_add(self):
+        s1 = [ [2, 2, 0], [2, 1, 1], [0, 1, 3] ]
+        s2 = [ [2, 1, 3], [1, 0, 1], [0, 1, 0] ]
+        added = Sandpile(data=s1) + Sandpile(data=s2)
+        expected = [ [2, 1, 0], [0, 3, 3], [1, 2, 3] ]
+
+        self.assertEqual(added.data, expected)
